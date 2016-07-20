@@ -81,21 +81,19 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Printf("setgid ok\n")
+	/*
 	for i := 0; i < len(supp_gids); i++ {
 		fmt.Printf("%d ", supp_gids[i])
 	}
-	fmt.Printf("\n")
+    */
 	err = syscall.Setgroups(supp_gids)
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Printf("setgroups ok\n")
 	err = syscall.Setuid(uid)
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Printf("setuid ok\n")
 	env := os.Environ()
 	err = syscall.Exec(prog[0], prog[0:], env)
 	if err != nil {
